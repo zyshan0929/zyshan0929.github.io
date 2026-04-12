@@ -24,15 +24,13 @@ I am currently advised by [Prof. Ziwei Wang](https://ziweiwangthu.github.io/), a
 I am actively seeking opportunities for Research Internship, please feel free to contact me!!!
 
 ## 🔥 News
-- *2025.06*: Our survey on point cloud compression and quality assessment is released!
+- *2026.04*: Our paper (DockAnywhere) is accepted by **RA-L**!
+- *2026.04*: Our survey on VLA+RL is released!
 - *2025.04*: Joined PINE @ NTU!
 - *2024.09*: I am honored with China National Scholarship 2024! 
 - *2024.09*: One paper (DisPA) is accepted by **NeurIPS2024**! 
-- *2024.06*: Starting my summer research (on-site) advised by [Prof. Shiqi Wang](https://www.cs.cityu.edu.hk/~shiqwang/) at [CityU](https://www.cityu.edu.hk/)! 
 - *2024.03*: One paper (PAME) is accepted by **ICME2024 (Oral)**! 
 - *2024.02*: One paper (CoPA) is accepted by **CVPR2024**!
-- *2023.12*: One paper (MFT-PCQA) is accepted by **ICASSP2024**!
-- *2023.06*: The Second Prize of the IEEE ICIP Point Cloud Visual Quality Assessment Grand Challenge (full-reference track).
 - *2023.05*: One paper (GPA-Net) is accepted by **IEEE Transactions on Visualization and Computer Graphics (TVCG,CCF-A)**! 
 
 ## 📝 Selected Publications 
