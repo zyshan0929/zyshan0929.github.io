@@ -25,7 +25,7 @@ I am actively seeking opportunities for Research Internship, please feel free to
 
 ## 🔥 News
 - *2026.04*: Our paper (DockAnywhere) is accepted by **RA-L**!
-- *2026.04*: Our survey on VLA+RL is released!
+- *2026.02*: Our survey on VLA+RL is released!
 - *2025.04*: Joined PINE @ NTU!
 - *2024.09*: I am honored with China National Scholarship 2024! 
 - *2024.09*: One paper (DisPA) is accepted by **NeurIPS2024**! 
@@ -36,6 +36,17 @@ I am actively seeking opportunities for Research Internship, please feel free to
 ## 📝 Selected Publications 
 
 <sup>\*</sup> denotes equal contribution, <sup>†</sup> denotes corresponding author.
+
+<div class='paper-box'><div class='paper-box-image'><div><div class="badge">Arixv</div><img src='images/dockanywhere.png' alt="sym" width="100%"></div></div>
+<div class='paper-box-text' markdown="1">
+
+DockAnywhere: Data-Efficient Visuomotor Policy Learning for Mobile Manipulation via Novel Demonstration Generation
+
+**Ziyu Shan**, Yuheng Zhou, Gaoyuan Wu, Ziheng Ji, Zhenyu Wu, Ziwei Wang<sup>†</sup>,
+
+- [**\[pdf\]**](https://arxiv.org/abs/2604.15023)[**\[code\]**](https://github.com/zyshan0929/DockAnywhere)
+</div>
+</div>
 
 <div class='paper-box'><div class='paper-box-image'><div><div class="badge">Arixv</div><img src='images/survey.png' alt="sym" width="100%"></div></div>
 <div class='paper-box-text' markdown="1">
