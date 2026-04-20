@@ -37,7 +37,7 @@ I am actively seeking opportunities for Research Internship, please feel free to
 
 <sup>\*</sup> denotes equal contribution, <sup>†</sup> denotes corresponding author.
 
-<div class='paper-box'><div class='paper-box-image'><div><div class="badge">Arixv</div><img src='images/dockanywhere.png' alt="sym" width="100%"></div></div>
+<div class='paper-box'><div class='paper-box-image'><div><div class="badge">RA-L</div><img src='images/dockanywhere.png' alt="sym" width="100%"></div></div>
 <div class='paper-box-text' markdown="1">
 
 DockAnywhere: Data-Efficient Visuomotor Policy Learning for Mobile Manipulation via Novel Demonstration Generation
