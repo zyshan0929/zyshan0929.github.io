@@ -68,17 +68,17 @@
     <div class="hero-cards">
       <div class="metric-card">
         <div class="metric-label">Augmentation Latency</div>
-        <div class="metric-value">0.1<span style="font-size:1.1rem">s</span></div>
+        <div class="metric-value">0.1<span class="unit">s</span></div>
         <div class="metric-desc">Per demonstration, enabling practical large-scale augmentation</div>
       </div>
       <div class="metric-card">
         <div class="metric-label">ManiSkill Avg. Success</div>
-        <div class="metric-value">78.9<span style="font-size:1.1rem">%</span></div>
+        <div class="metric-value">78.9<span class="unit">%</span></div>
         <div class="metric-desc">Across 4 tasks with only 5 source demonstrations</div>
       </div>
       <div class="metric-card accent">
         <div class="metric-label">Data Augmentation for</div>
-        <div class="metric-value" style="font-size:1.3rem;line-height:1.2">Mobile Manipulation</div>
+        <div class="metric-value metric-value-text">Mobile Manipulation</div>
         <div class="metric-desc">Point cloud editing · Spatial transform · Skill reuse</div>
       </div>
     </div>
@@ -193,8 +193,8 @@
     </div>
 
     <!-- Main comparison table -->
-    <h3 class="section-title" style="font-size:1.15rem; margin-bottom:0.5rem;">ManiSkill Benchmark Comparison</h3>
-    <p style="font-size:0.85rem; color:var(--text-muted); margin-bottom:1rem;">
+    <h3 class="subsection-title">ManiSkill Benchmark Comparison</h3>
+    <p class="table-note">
       Success rate (%) across five tasks. # Demos = number of augmented demonstrations used.
     </p>
     <div class="table-wrap reveal">
@@ -250,7 +250,7 @@
     </div>
 
     <!-- Real-world figure -->
-    <h3 class="section-title" style="font-size:1.15rem; margin:2.5rem 0 0.5rem;">Real-World Generalization</h3>
+    <h3 class="subsection-title">Real-World Generalization</h3>
     <div class="figure-wrap reveal">
       <img src="assets/images/real_traj_v2.png"
            alt="Real-world DockAnywhere: source demonstration on Galaxea R1, after docking transition, after rotation"
@@ -269,11 +269,11 @@
   <div class="container">
     <p class="section-label">Citation</p>
     <h2 class="section-title">BibTeX</h2>
-    <p class="section-body" style="margin-bottom:1.5rem;">
+    <p class="section-body">
       If you find DockAnywhere useful in your research, please cite our paper.
     </p>
-    <div class="citation-block reveal" style="position:relative;">
-      <button class="copy-btn" id="copy-btn" onclick="copyCitation()">Copy</button>
+    <div class="citation-block reveal">
+      <button class="copy-btn" id="copy-btn" type="button">Copy</button>
       <code id="bibtex">@article{shan2026dockanywhere,
         title={DockAnywhere: Data-Efficient Visuomotor Policy Learning for Mobile Manipulation via Novel Demonstration Generation},
         author={Shan, Ziyu and Zhou, Yuheng and Wu, Gaoyuan and Ji, Ziheng and Wu, Zhenyu and Wang, Ziwei},
@@ -292,7 +292,7 @@
       DockAnywhere &middot; RA-L 2026 &middot;
       <a href="https://zyshan0929.github.io">Ziyu Shan</a>
     </p>
-    <p style="margin-top:0.4rem; font-size:0.78rem;">
+    <p class="footer-sub">
       Page template inspired by academic project pages.
     </p>
   </div>
