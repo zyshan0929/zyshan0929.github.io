@@ -369,6 +369,25 @@ section:nth-of-type(even) {
 }
 .metric-card.accent .metric-desc { color: rgba(245, 238, 227, 0.85); }
 
+/* ── Abstract two-column layout ── */
+.abstract-grid {
+  display: grid;
+  grid-template-columns: minmax(0, 1.5fr) minmax(260px, 0.85fr);
+  gap: 32px;
+  align-items: start;
+  margin-top: 0.5rem;
+}
+
+.abstract-grid .section-body {
+  max-width: none;
+  margin-bottom: 0;
+}
+
+.abstract-grid .keypoints {
+  grid-template-columns: 1fr;
+  margin-top: 0;
+}
+
 /* ── Keypoints ── */
 .keypoints {
   display: grid;
@@ -701,6 +720,7 @@ html.js .reveal.visible {
   .hero-cards { grid-template-columns: 1fr; }
   .method-blocks { grid-template-columns: 1fr; }
   .kpi-row { grid-template-columns: 1fr 1fr; }
+  .abstract-grid { grid-template-columns: 1fr; gap: 22px; }
 
   .btn { flex: 1 1 auto; justify-content: center; }
 
