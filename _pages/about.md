@@ -44,7 +44,7 @@ DockAnywhere: Data-Efficient Visuomotor Policy Learning for Mobile Manipulation 
 
 **Ziyu Shan**, Yuheng Zhou, Gaoyuan Wu, Ziheng Ji, Zhenyu Wu, Ziwei Wang<sup>†</sup>,
 
-- [**\[pdf\]**](https://arxiv.org/abs/2604.15023)[**\[code\]**](https://github.com/zyshan0929/DockAnywhere)[**\[website\]**](https://github.com/zyshan0929.github.io/DockAnywhere)
+- [**\[pdf\]**](https://arxiv.org/abs/2604.15023)[**\[code\]**](https://github.com/zyshan0929/DockAnywhere)[**\[website\]**](https://zyshan0929.github.io/dockanywhere/)
 </div>
 </div>
 
