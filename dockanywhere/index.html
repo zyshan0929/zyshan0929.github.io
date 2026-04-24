@@ -168,7 +168,7 @@
     <p class="section-label">Results</p>
     <h2 class="section-title">State-of-the-art on ManiSkill &amp;<br>real-world generalization</h2>
     <p class="section-body">
-      DockAnywhere is evaluated on four ManiSkill manipulation tasks under 1-demo and 5-demo source settings, and validated on a real Unitree H1 humanoid robot.
+      DockAnywhere is evaluated on four ManiSkill manipulation tasks under 1-demo and 5-demo source settings.
     </p>
 
     <!-- KPI row -->
@@ -194,7 +194,7 @@
     <!-- Main comparison table -->
     <h3 class="section-title" style="font-size:1.15rem; margin-bottom:0.5rem;">ManiSkill Benchmark Comparison</h3>
     <p style="font-size:0.85rem; color:var(--text-muted); margin-bottom:1rem;">
-      Success rate (%) across five tasks. # Demos = number of source demonstrations used. Higher is better.
+      Success rate (%) across five tasks. # Demos = number of augmented demonstrations used.
     </p>
     <div class="table-wrap reveal">
       <table>
@@ -211,7 +211,7 @@
           </tr>
         </thead>
         <tbody>
-          <tr class="table-section-header"><td colspan="8">1 Source Demonstration</td></tr>
+          <tr class="table-section-header"><td colspan="8">Demo #1</td></tr>
           <tr>
             <td>1</td>
             <td>DP</td>
@@ -223,7 +223,7 @@
             <td>100.0</td><td>88.0</td><td>90.0</td><td>81.0</td><td>84.0</td><td>88.6</td>
           </tr>
 
-          <tr class="table-section-header"><td colspan="8">5 Source Demonstrations</td></tr>
+          <tr class="table-section-header"><td colspan="8">Demo #5</td></tr>
           <tr>
             <td>5</td>
             <td>DP</td>
@@ -252,10 +252,10 @@
     <h3 class="section-title" style="font-size:1.15rem; margin:2.5rem 0 0.5rem;">Real-World Generalization</h3>
     <div class="figure-wrap reveal">
       <img src="assets/images/real_traj_v2.png"
-           alt="Real-world DockAnywhere: source demonstration on Unitree H1, after docking transition, after rotation"
+           alt="Real-world DockAnywhere: source demonstration on Galaxea R1, after docking transition, after rotation"
            loading="lazy" />
       <p class="figure-caption">
-        <strong>Real-robot transfer on Unitree H1.</strong>
+        <strong>Real-robot transfer on Galaxea R1.</strong>
         Given a source demonstration (left), DockAnywhere automatically computes the spatial transform for a new docking position (center) and applies rotation augmentation (right).
         The policy trained on augmented data successfully executes the gear assembly task from unseen docking configurations without additional human demonstrations.
       </p>
