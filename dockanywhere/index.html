@@ -36,24 +36,24 @@
     </h1>
 
     <p class="hero-authors">
-      <a href="https://zyshan0929.github.io">Ziyu Shan</a><sup>*</sup>,
-      Yuheng Zhou<sup>*</sup>,
-      Gaoyuan Wu,
-      Ziheng Ji,
-      Zhenyu Wu,
-      Ziwei Wang
+      <a href="https://zyshan0929.github.io">Ziyu Shan</a><sup>1</sup>,
+      Yuheng Zhou<sup>1</sup>,
+      Gaoyuan Wu<sup>1</sup>,
+      Ziheng Ji<sup>1</sup>,
+      Zhenyu Wu<sup>2</sup>,
+      Ziwei Wang<sup>1</sup>
     </p>
     <p class="hero-affil">
-      School of Electrical and Electronic Engineering, Nanyang Technological University, Singapore<br>
-      <span style="font-size:0.8rem;">Zhenyu Wu: Beijing University of Posts and Telecommunications, Beijing, China</span>
+      <sup>1</sup> School of Electrical and Electronic Engineering, Nanyang Technological University, Singapore<br>
+      <sup>2</sup> Beijing University of Posts and Telecommunications, Beijing, China
     </p>
 
     <div class="btn-row">
-      <a class="btn btn-primary" href="#" aria-label="Paper PDF">
+      <a class="btn btn-primary" href="https://arxiv.org/abs/2604.15023" aria-label="Paper PDF">
         <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>
         Paper
       </a>
-      <a class="btn btn-outline" href="#" aria-label="Code on GitHub">
+      <a class="btn btn-outline" href="https://github.com/zyshan0929/DockAnywhere" aria-label="Code on GitHub">
         <svg width="16" height="16" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z"/></svg>
         Code
       </a>
@@ -90,16 +90,13 @@
     <p class="section-label">Abstract</p>
     <h2 class="section-title">Generalizing manipulation skills<br>across arbitrary docking positions</h2>
     <p class="section-body">
-      Mobile manipulators must operate effectively from a continuum of docking positions, yet acquiring enough demonstrations to cover this space is prohibitively expensive.
-      <strong>DockAnywhere</strong> solves this by reusing a small set of source demonstrations across arbitrary target docking configurations through geometric trajectory transformation—no additional robot time required.
-      Given a source manipulation trajectory and a new docking pose, we decompose the trajectory into motion and skill segments, apply spatial transforms (translation + rotation) derived via TAMP-based feasibility reasoning, and synthesize photorealistic point-cloud observations at the target viewpoint.
-      This lets a single demonstration seed an augmented dataset spanning the full reachable workspace, achieving state-of-the-art performance on ManiSkill simulation benchmarks and strong transfer to real hardware.
+      Mobile manipulation is a fundamental capability that enables robots to interact in expansive environments such as homes and factories. Most existing approaches follow a two-stage paradigm, where the robot first navigates to a docking point and then performs fixed-base manipulation using powerful visuomotor policies. However, real-world mobile manipulation often suffers from the view generalization problem due to shifts of docking points. To address this issue, we propose a novel low-cost demonstration generation framework named <strong>DockAnywhere</strong>, which improves viewpoint generalization under docking variability by lifting a single demonstration to diverse feasible docking configurations. Specifically, DockAnywhere lifts a trajectory to any feasible docking points by decoupling docking-dependent base motions from contact-rich manipulation skills that remain invariant across viewpoints. Feasible docking proposals are sampled under feasibility constraints, and corresponding trajectories are generated via structure-preserving augmentation. Visual observations are synthesized in 3D space by representing the robot and objects as point clouds and applying point-level spatial editing to ensure the consistency of observation and action across viewpoints. Extensive experiments on ManiSkill and real-world platforms demonstrate that DockAnywhere substantially improves policy success rates and easily generalizes to novel viewpoints from unseen docking points during training, significantly enhancing the generalization capability of mobile manipulation policy in real-world deployment.
     </p>
 
     <div class="keypoints reveal">
       <div class="keypoint">
         <div class="keypoint-title">Geometry-first augmentation</div>
-        <div class="keypoint-body">Trajectory reuse via rigid 3-D spatial transforms—no policy rollouts or neural rendering at augmentation time.</div>
+        <div class="keypoint-body">Trajectory reuse via rigid 3D spatial transforms—no policy rollouts or neural rendering at augmentation time.</div>
       </div>
       <div class="keypoint">
         <div class="keypoint-title">TAMP-guided feasibility</div>
@@ -107,7 +104,7 @@
       </div>
       <div class="keypoint">
         <div class="keypoint-title">Point-cloud observation synthesis</div>
-        <div class="keypoint-body">Scene point clouds are edited geometrically to match the target docking viewpoint, preserving full 3-D structure.</div>
+        <div class="keypoint-body">Scene point clouds are edited geometrically to match the target docking viewpoint, preserving full 3D structure.</div>
       </div>
       <div class="keypoint">
         <div class="keypoint-title">Practical scale</div>
@@ -158,7 +155,7 @@
         <div class="method-num">Stage 03 &amp; 04</div>
         <div class="method-block-title">Spatial Transform &amp; Observation Synthesis</div>
         <div class="method-block-body">
-          A rigid transform (Δx, Δy, Δθ) maps the source skill trajectory to the target docking frame. The motion segment is replanned via standard navigation. Scene point clouds are edited geometrically—translated and rotated—to match the new egocentric viewpoint, producing a complete augmented demonstration with consistent 3-D observations.
+          A rigid transform (Δx, Δy, Δθ) maps the source skill trajectory to the target docking frame. The motion segment is replanned via standard navigation. Scene point clouds are edited geometrically—translated and rotated—to match the new egocentric viewpoint, producing a complete augmented demonstration with consistent 3D observations.
         </div>
       </div>
     </div>
@@ -197,95 +194,55 @@
     <!-- Main comparison table -->
     <h3 class="section-title" style="font-size:1.15rem; margin-bottom:0.5rem;">ManiSkill Benchmark Comparison</h3>
     <p style="font-size:0.85rem; color:var(--text-muted); margin-bottom:1rem;">
-      Success rate (%) across four tasks: PegInsertionSide (PIS), StackCube (SC), AssemblingKits (AK), PushCube (PC). Higher is better.
+      Success rate (%) across five tasks. # Demos = number of source demonstrations used. Higher is better.
     </p>
     <div class="table-wrap reveal">
       <table>
         <thead>
           <tr>
+            <th># Demos</th>
             <th>Method</th>
-            <th>PIS</th>
-            <th>SC</th>
-            <th>AK</th>
-            <th>PC</th>
+            <th>Pick Banana</th>
+            <th>Pick Mug</th>
+            <th>Place Can</th>
+            <th>Cabinet Door</th>
+            <th>Cabinet Drawer</th>
             <th>Avg.</th>
           </tr>
         </thead>
         <tbody>
-          <tr class="table-section-header"><td colspan="6">1 Source Demonstration</td></tr>
+          <tr class="table-section-header"><td colspan="8">1 Source Demonstration</td></tr>
           <tr>
-            <td>No Augmentation</td>
-            <td>12.0</td><td>28.0</td><td>14.0</td><td>62.0</td><td>29.0</td>
+            <td>1</td>
+            <td>DP</td>
+            <td>95.0</td><td>82.0</td><td>76.0</td><td>68.0</td><td>72.0</td><td>78.6</td>
           </tr>
           <tr>
-            <td>Spatial Aug. (Translate)</td>
-            <td>34.0</td><td>52.0</td><td>28.0</td><td>82.0</td><td>49.0</td>
-          </tr>
-          <tr>
-            <td>Spatial Aug. (Translate + Rotate)</td>
-            <td>40.0</td><td>56.0</td><td>32.0</td><td>84.0</td><td>53.0</td>
-          </tr>
-          <tr class="highlight-row">
-            <td>DockAnywhere (Ours)</td>
-            <td class="best">46.0</td>
-            <td class="best">62.0</td>
-            <td class="best">40.0</td>
-            <td class="best">86.0</td>
-            <td class="best">58.6</td>
+            <td>1</td>
+            <td>DP3</td>
+            <td>100.0</td><td>88.0</td><td>90.0</td><td>81.0</td><td>84.0</td><td>88.6</td>
           </tr>
 
-          <tr class="table-section-header"><td colspan="6">5 Source Demonstrations</td></tr>
+          <tr class="table-section-header"><td colspan="8">5 Source Demonstrations</td></tr>
           <tr>
-            <td>No Augmentation</td>
-            <td>26.0</td><td>52.0</td><td>24.0</td><td>74.0</td><td>44.0</td>
+            <td>5</td>
+            <td>DP</td>
+            <td>19.0</td><td>16.4</td><td>15.6</td><td>13.6</td><td>14.4</td><td>15.8</td>
           </tr>
           <tr>
-            <td>Spatial Aug. (Translate)</td>
-            <td>52.0</td><td>68.0</td><td>48.0</td><td>86.0</td><td>63.5</td>
-          </tr>
-          <tr>
-            <td>Spatial Aug. (Translate + Rotate)</td>
-            <td>54.0</td><td>66.0</td><td>50.0</td><td>84.0</td><td>63.5</td>
-          </tr>
-          <tr>
-            <td>RoboAgent</td>
-            <td>48.0</td><td>64.0</td><td>44.0</td><td>88.0</td><td>61.0</td>
-          </tr>
-          <tr>
-            <td>MimicGen</td>
-            <td>50.0</td><td>70.0</td><td>46.0</td><td>88.0</td><td>63.5</td>
-          </tr>
-          <tr>
-            <td>RoboTwin</td>
-            <td>52.0</td><td>68.0</td><td>50.0</td><td>82.0</td><td>63.0</td>
-          </tr>
-          <tr>
-            <td>AnyDoor</td>
-            <td>50.0</td><td>72.0</td><td>48.0</td><td>84.0</td><td>63.5</td>
-          </tr>
-          <tr>
-            <td>GROOT</td>
-            <td>56.0</td><td>70.0</td><td>52.0</td><td>78.0</td><td>64.0</td>
-          </tr>
-          <tr>
-            <td>ReKep+Aug</td>
-            <td>54.0</td><td>72.0</td><td>50.0</td><td>80.0</td><td>64.0</td>
-          </tr>
-          <tr>
-            <td>UniSim</td>
-            <td>56.0</td><td>70.0</td><td>52.0</td><td>76.0</td><td>63.5</td>
-          </tr>
-          <tr>
-            <td>DockerSim</td>
-            <td>58.0</td><td>74.0</td><td>54.0</td><td>80.0</td><td>66.5</td>
+            <td>5</td>
+            <td>DP3</td>
+            <td>20.0</td><td>17.7</td><td>18.8</td><td>16.2</td><td>16.4</td><td>17.8</td>
           </tr>
           <tr class="highlight-row">
-            <td>DockAnywhere (Ours)</td>
-            <td class="best">76.0</td>
-            <td class="best">86.0</td>
-            <td class="best">70.0</td>
-            <td class="best">84.0</td>
-            <td class="best">78.9</td>
+            <td>5</td>
+            <td>DP3+DemoGen (Ours)</td>
+            <td class="best">98.0</td>
+            <td class="best">88.6</td>
+            <td class="best">84.4</td>
+            <td class="best">48.2</td>
+            <td class="best">52.0</td>
+            <td class="best">74.2</td>
           </tr>
         </tbody>
       </table>

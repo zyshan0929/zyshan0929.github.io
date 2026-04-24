@@ -396,7 +396,7 @@ thead th {
   text-align: center;
   white-space: nowrap;
 }
-thead th:first-child { text-align: left; }
+thead th:nth-child(2) { text-align: left; }
 
 tbody td {
   padding: 0.7rem 1rem;
@@ -404,7 +404,7 @@ tbody td {
   text-align: center;
   color: var(--text);
 }
-tbody td:first-child { text-align: left; font-weight: 500; }
+tbody td:nth-child(2) { text-align: left; font-weight: 500; }
 
 tbody tr:last-child td { border-bottom: none; }
 
