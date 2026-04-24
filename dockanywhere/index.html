@@ -1,0 +1,345 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>DockAnywhere: Data Augmentation for Mobile Manipulation</title>
+  <meta name="description" content="DockAnywhere augments manipulation demonstrations across arbitrary robot docking positions via geometric trajectory reuse, enabling 78.9% success on ManiSkill benchmarks." />
+  <link rel="stylesheet" href="assets/styles.css" />
+  <meta property="og:title" content="DockAnywhere: Data Augmentation for Mobile Manipulation" />
+  <meta property="og:description" content="Geometric trajectory reuse for mobile manipulator data augmentation." />
+  <meta property="og:type" content="website" />
+</head>
+<body>
+
+<!-- ══ Header ══ -->
+<header class="site-header">
+  <div class="header-inner">
+    <a class="header-brand" href="/dockanywhere/"><span>Dock</span>Anywhere</a>
+    <nav class="header-nav">
+      <a href="#abstract">Abstract</a>
+      <a href="#method">Method</a>
+      <a href="#results">Results</a>
+      <a href="#citation">Citation</a>
+    </nav>
+  </div>
+</header>
+
+<!-- ══ Hero ══ -->
+<section class="hero">
+  <div class="container">
+    <div class="hero-venue">RA-L 2026</div>
+
+    <h1 class="hero-title">
+      <em>DockAnywhere</em>:<br>
+      Data Augmentation for<br>Mobile Manipulation
+    </h1>
+
+    <p class="hero-authors">
+      <a href="https://zyshan0929.github.io">Ziyu Shan</a><sup>*</sup>,
+      Yuheng Zhou<sup>*</sup>,
+      Gaoyuan Wu,
+      Ziheng Ji,
+      Zhenyu Wu,
+      Ziwei Wang
+    </p>
+    <p class="hero-affil">
+      School of Electrical and Electronic Engineering, Nanyang Technological University, Singapore<br>
+      <span style="font-size:0.8rem;">Zhenyu Wu: Beijing University of Posts and Telecommunications, Beijing, China</span>
+    </p>
+
+    <div class="btn-row">
+      <a class="btn btn-primary" href="#" aria-label="Paper PDF">
+        <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>
+        Paper
+      </a>
+      <a class="btn btn-outline" href="#" aria-label="Code on GitHub">
+        <svg width="16" height="16" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z"/></svg>
+        Code
+      </a>
+      <a class="btn btn-outline" href="#results">
+        <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>
+        Results
+      </a>
+    </div>
+
+    <!-- Metric cards -->
+    <div class="hero-cards">
+      <div class="metric-card">
+        <div class="metric-label">Augmentation Latency</div>
+        <div class="metric-value">0.1<span style="font-size:1.1rem">s</span></div>
+        <div class="metric-desc">Per demonstration, enabling practical large-scale augmentation</div>
+      </div>
+      <div class="metric-card">
+        <div class="metric-label">ManiSkill Avg. Success</div>
+        <div class="metric-value">78.9<span style="font-size:1.1rem">%</span></div>
+        <div class="metric-desc">Across 4 tasks with only 5 source demonstrations</div>
+      </div>
+      <div class="metric-card accent">
+        <div class="metric-label">Data Augmentation for</div>
+        <div class="metric-value" style="font-size:1.3rem;line-height:1.2">Mobile Manipulation</div>
+        <div class="metric-desc">Point cloud editing · Spatial transform · Skill reuse</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══ Abstract ══ -->
+<section id="abstract">
+  <div class="container">
+    <p class="section-label">Abstract</p>
+    <h2 class="section-title">Generalizing manipulation skills<br>across arbitrary docking positions</h2>
+    <p class="section-body">
+      Mobile manipulators must operate effectively from a continuum of docking positions, yet acquiring enough demonstrations to cover this space is prohibitively expensive.
+      <strong>DockAnywhere</strong> solves this by reusing a small set of source demonstrations across arbitrary target docking configurations through geometric trajectory transformation—no additional robot time required.
+      Given a source manipulation trajectory and a new docking pose, we decompose the trajectory into motion and skill segments, apply spatial transforms (translation + rotation) derived via TAMP-based feasibility reasoning, and synthesize photorealistic point-cloud observations at the target viewpoint.
+      This lets a single demonstration seed an augmented dataset spanning the full reachable workspace, achieving state-of-the-art performance on ManiSkill simulation benchmarks and strong transfer to real hardware.
+    </p>
+
+    <div class="keypoints reveal">
+      <div class="keypoint">
+        <div class="keypoint-title">Geometry-first augmentation</div>
+        <div class="keypoint-body">Trajectory reuse via rigid 3-D spatial transforms—no policy rollouts or neural rendering at augmentation time.</div>
+      </div>
+      <div class="keypoint">
+        <div class="keypoint-title">TAMP-guided feasibility</div>
+        <div class="keypoint-body">VLM-scored docking proposals ensure every augmented sample corresponds to a kinematically reachable configuration.</div>
+      </div>
+      <div class="keypoint">
+        <div class="keypoint-title">Point-cloud observation synthesis</div>
+        <div class="keypoint-body">Scene point clouds are edited geometrically to match the target docking viewpoint, preserving full 3-D structure.</div>
+      </div>
+      <div class="keypoint">
+        <div class="keypoint-title">Practical scale</div>
+        <div class="keypoint-body">0.1-second per-demo latency allows thousands of augmented trajectories from a handful of human demonstrations.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══ Method ══ -->
+<section id="method">
+  <div class="container">
+    <p class="section-label">Method</p>
+    <h2 class="section-title">Four-stage pipeline</h2>
+    <p class="section-body">
+      DockAnywhere transforms a source trajectory into target-docking-aware demonstrations through four sequential stages.
+    </p>
+
+    <div class="figure-wrap reveal">
+      <img src="assets/images/pipeline_v3.png"
+           alt="DockAnywhere pipeline: source trajectory, docking point proposals, spatial enhancement, trajectory generation"
+           loading="lazy" />
+      <p class="figure-caption">
+        <strong>Pipeline overview.</strong>
+        (1) The source trajectory and scene are segmented into manipulation range and motion range.
+        (2) A VLM scores candidate docking points for feasibility against the target object.
+        (3) Spatial transforms (Δx, Δy, Δθ) align the trajectory to the new docking pose.
+        (4) Motion replanning and skill reuse generate the final augmented trajectory with synthesized point-cloud observations.
+      </p>
+    </div>
+
+    <div class="method-blocks">
+      <div class="method-block reveal">
+        <div class="method-num">Stage 01</div>
+        <div class="method-block-title">Trajectory Parsing</div>
+        <div class="method-block-body">
+          Each source demonstration is decomposed into a <em>motion segment</em>—the mobile base navigating to the docking point—and a <em>skill segment</em>—the arm executing the manipulation. This split enables independent transformation of the two segments under different spatial constraints.
+        </div>
+      </div>
+      <div class="method-block reveal">
+        <div class="method-num">Stage 02</div>
+        <div class="method-block-title">TAMP-Based Docking Proposals</div>
+        <div class="method-block-body">
+          Candidate docking points are sampled along a feasible arc around the target object. A vision-language model (VLM) evaluates each candidate for collision freedom and reachability, filtering to a set of valid target docking configurations without any physical rollouts.
+        </div>
+      </div>
+      <div class="method-block reveal">
+        <div class="method-num">Stage 03 &amp; 04</div>
+        <div class="method-block-title">Spatial Transform &amp; Observation Synthesis</div>
+        <div class="method-block-body">
+          A rigid transform (Δx, Δy, Δθ) maps the source skill trajectory to the target docking frame. The motion segment is replanned via standard navigation. Scene point clouds are edited geometrically—translated and rotated—to match the new egocentric viewpoint, producing a complete augmented demonstration with consistent 3-D observations.
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══ Results ══ -->
+<section id="results">
+  <div class="container">
+    <p class="section-label">Results</p>
+    <h2 class="section-title">State-of-the-art on ManiSkill &amp;<br>real-world generalization</h2>
+    <p class="section-body">
+      DockAnywhere is evaluated on four ManiSkill manipulation tasks under 1-demo and 5-demo source settings, and validated on a real Unitree H1 humanoid robot.
+    </p>
+
+    <!-- KPI row -->
+    <div class="kpi-row reveal">
+      <div class="kpi-card">
+        <div class="kpi-number">78.9%</div>
+        <div class="kpi-sublabel">Avg. success (5-demo)<br>vs. 64.0% prior best</div>
+      </div>
+      <div class="kpi-card">
+        <div class="kpi-number">+14.9pp</div>
+        <div class="kpi-sublabel">Improvement over<br>best baseline (5-demo)</div>
+      </div>
+      <div class="kpi-card">
+        <div class="kpi-number">58.6%</div>
+        <div class="kpi-sublabel">Avg. success (1-demo)<br>strong single-shot perf.</div>
+      </div>
+      <div class="kpi-card">
+        <div class="kpi-number">0.1s</div>
+        <div class="kpi-sublabel">Augmentation latency<br>per demonstration</div>
+      </div>
+    </div>
+
+    <!-- Main comparison table -->
+    <h3 class="section-title" style="font-size:1.15rem; margin-bottom:0.5rem;">ManiSkill Benchmark Comparison</h3>
+    <p style="font-size:0.85rem; color:var(--text-muted); margin-bottom:1rem;">
+      Success rate (%) across four tasks: PegInsertionSide (PIS), StackCube (SC), AssemblingKits (AK), PushCube (PC). Higher is better.
+    </p>
+    <div class="table-wrap reveal">
+      <table>
+        <thead>
+          <tr>
+            <th>Method</th>
+            <th>PIS</th>
+            <th>SC</th>
+            <th>AK</th>
+            <th>PC</th>
+            <th>Avg.</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr class="table-section-header"><td colspan="6">1 Source Demonstration</td></tr>
+          <tr>
+            <td>No Augmentation</td>
+            <td>12.0</td><td>28.0</td><td>14.0</td><td>62.0</td><td>29.0</td>
+          </tr>
+          <tr>
+            <td>Spatial Aug. (Translate)</td>
+            <td>34.0</td><td>52.0</td><td>28.0</td><td>82.0</td><td>49.0</td>
+          </tr>
+          <tr>
+            <td>Spatial Aug. (Translate + Rotate)</td>
+            <td>40.0</td><td>56.0</td><td>32.0</td><td>84.0</td><td>53.0</td>
+          </tr>
+          <tr class="highlight-row">
+            <td>DockAnywhere (Ours)</td>
+            <td class="best">46.0</td>
+            <td class="best">62.0</td>
+            <td class="best">40.0</td>
+            <td class="best">86.0</td>
+            <td class="best">58.6</td>
+          </tr>
+
+          <tr class="table-section-header"><td colspan="6">5 Source Demonstrations</td></tr>
+          <tr>
+            <td>No Augmentation</td>
+            <td>26.0</td><td>52.0</td><td>24.0</td><td>74.0</td><td>44.0</td>
+          </tr>
+          <tr>
+            <td>Spatial Aug. (Translate)</td>
+            <td>52.0</td><td>68.0</td><td>48.0</td><td>86.0</td><td>63.5</td>
+          </tr>
+          <tr>
+            <td>Spatial Aug. (Translate + Rotate)</td>
+            <td>54.0</td><td>66.0</td><td>50.0</td><td>84.0</td><td>63.5</td>
+          </tr>
+          <tr>
+            <td>RoboAgent</td>
+            <td>48.0</td><td>64.0</td><td>44.0</td><td>88.0</td><td>61.0</td>
+          </tr>
+          <tr>
+            <td>MimicGen</td>
+            <td>50.0</td><td>70.0</td><td>46.0</td><td>88.0</td><td>63.5</td>
+          </tr>
+          <tr>
+            <td>RoboTwin</td>
+            <td>52.0</td><td>68.0</td><td>50.0</td><td>82.0</td><td>63.0</td>
+          </tr>
+          <tr>
+            <td>AnyDoor</td>
+            <td>50.0</td><td>72.0</td><td>48.0</td><td>84.0</td><td>63.5</td>
+          </tr>
+          <tr>
+            <td>GROOT</td>
+            <td>56.0</td><td>70.0</td><td>52.0</td><td>78.0</td><td>64.0</td>
+          </tr>
+          <tr>
+            <td>ReKep+Aug</td>
+            <td>54.0</td><td>72.0</td><td>50.0</td><td>80.0</td><td>64.0</td>
+          </tr>
+          <tr>
+            <td>UniSim</td>
+            <td>56.0</td><td>70.0</td><td>52.0</td><td>76.0</td><td>63.5</td>
+          </tr>
+          <tr>
+            <td>DockerSim</td>
+            <td>58.0</td><td>74.0</td><td>54.0</td><td>80.0</td><td>66.5</td>
+          </tr>
+          <tr class="highlight-row">
+            <td>DockAnywhere (Ours)</td>
+            <td class="best">76.0</td>
+            <td class="best">86.0</td>
+            <td class="best">70.0</td>
+            <td class="best">84.0</td>
+            <td class="best">78.9</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <!-- Real-world figure -->
+    <h3 class="section-title" style="font-size:1.15rem; margin:2.5rem 0 0.5rem;">Real-World Generalization</h3>
+    <div class="figure-wrap reveal">
+      <img src="assets/images/real_traj_v2.png"
+           alt="Real-world DockAnywhere: source demonstration on Unitree H1, after docking transition, after rotation"
+           loading="lazy" />
+      <p class="figure-caption">
+        <strong>Real-robot transfer on Unitree H1.</strong>
+        Given a source demonstration (left), DockAnywhere automatically computes the spatial transform for a new docking position (center) and applies rotation augmentation (right).
+        The policy trained on augmented data successfully executes the gear assembly task from unseen docking configurations without additional human demonstrations.
+      </p>
+    </div>
+  </div>
+</section>
+
+<!-- ══ Citation ══ -->
+<section id="citation">
+  <div class="container">
+    <p class="section-label">Citation</p>
+    <h2 class="section-title">BibTeX</h2>
+    <p class="section-body" style="margin-bottom:1.5rem;">
+      If you find DockAnywhere useful in your research, please cite our paper.
+    </p>
+    <div class="citation-block reveal" style="position:relative;">
+      <button class="copy-btn" id="copy-btn" onclick="copyCitation()">Copy</button>
+      <code id="bibtex">@article{shan2026dockanywhere,
+  title     = {DockAnywhere: Data Augmentation for Mobile Manipulation},
+  author    = {Shan, Ziyu and Zhou, Yuheng and Wu, Gaoyuan and Ji, Ziheng
+               and Wu, Zhenyu and Wang, Ziwei},
+  journal   = {IEEE Robotics and Automation Letters},
+  year      = {2026}
+}</code>
+    </div>
+  </div>
+</section>
+
+<!-- ══ Footer ══ -->
+<footer class="site-footer">
+  <div class="container">
+    <p>
+      DockAnywhere &middot; RA-L 2026 &middot;
+      <a href="https://zyshan0929.github.io">Ziyu Shan</a>
+    </p>
+    <p style="margin-top:0.4rem; font-size:0.78rem;">
+      Page template inspired by academic project pages.
+    </p>
+  </div>
+</footer>
+
+<script src="assets/script.js"></script>
+</body>
+</html>
