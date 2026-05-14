@@ -19,9 +19,7 @@ redirect_from:
 
 I am a first year PhD student of [Perception and embodied INtElligence (PINE) Lab](https://pine-lab-ntu.github.io/) at [Nanyang Techological University](https://www.ntu.edu.sg/). Before that, I received my Bachelor and Master degree from [Shanghai Jiao Tong University (SJTU)](https://en.sjtu.edu.cn/), ranking top 20%.
 
-I am currently advised by [Prof. Ziwei Wang](https://ziweiwangthu.github.io/), and working closely with [Prof. Yiling Xu](https://scholar.google.com/citations?user=638kRwkAAAAJ&hl=en) and [Rui Ye](https://rui-ye.github.io/). My research interests lie in embodied ai, world model, media perceptual quality assessment (e.g., 3D point cloud, image) and low-level vision. Specifically, I focus on world model and mobile manipulation.
-
-I am actively seeking opportunities for Research Internship, please feel free to contact me!!!
+I am currently advised by [Prof. Ziwei Wang](https://ziweiwangthu.github.io/), and working closely with [Prof. Yiling Xu](https://scholar.google.com/citations?user=638kRwkAAAAJ&hl=en) and [Rui Ye](https://rui-ye.github.io/). My research interests lie in embodied ai, world model, media perceptual quality assessment (e.g., 3D point cloud, image) and low-level vision. Specifically, I focus on world action models (WAM), vision-and-language models (VLA) and mobile manipulation.
 
 ## 🔥 News
 - *2026.04*: Our paper (DockAnywhere) is accepted by **RA-L**!
@@ -118,12 +116,12 @@ GPA-Net:No-Reference Point Cloud Quality Assessment with Multi-task Graph Convol
 ## 🎖 Honors and Awards
 - *2024.10* China National Scholarship.
 - *2023.10* SJTU Scholarship A Prize (Graduates).
+- *2023.10* Xiaomi Scholarship.
 - *2022.06* Outstanding Graduate of Shanghai Jiaotong University.
-- *2022.06* SJTU Scholarship B Prize (Undergraduates).
 - *2021.09* Ceyear China Scholarship.
 
 ## 💻 Services
 - Reviewers for:
   - TPAMI, TIP, TAI, TCSVT, TOMM, Neurocomputing.
-  - NeurIPS, AAAI, MM, ICME
+  - NeurIPS, AAAI, MM, ICME.
 
