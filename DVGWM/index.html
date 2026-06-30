@@ -1,0 +1,402 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>DVG-WM: Disentangled Video Generation Enables Efficient Embodied World Model for Robotic Manipulation</title>
+  <meta name="description" content="DVG-WM is an efficient video-based embodied world model that disentangles dynamics learning from visual synthesis, achieving up to 3.97x faster inference for robotic manipulation." />
+  <link rel="stylesheet" href="assets/styles.css" />
+  <meta property="og:title" content="DVG-WM: Disentangled Video Generation Enables Efficient Embodied World Model for Robotic Manipulation" />
+  <meta property="og:description" content="Disentangling dynamics learning and visual synthesis for efficient embodied world models." />
+  <meta property="og:type" content="website" />
+  <meta property="og:image" content="assets/images/teaser.png" />
+</head>
+<body>
+
+<!-- ══ Header ══ -->
+<header class="site-header">
+  <div class="header-inner">
+    <a class="header-brand" href="./"><span>DVG</span>-WM</a>
+    <nav class="header-nav">
+      <a href="#abstract">Abstract</a>
+      <a href="#method">Method</a>
+      <a href="#results">Results</a>
+      <a href="#citation">Citation</a>
+    </nav>
+  </div>
+</header>
+
+<!-- ══ Hero ══ -->
+<section class="hero">
+  <div class="container">
+    <div class="hero-venue">Embodied World Model &middot; 2026</div>
+
+    <h1 class="hero-title">
+      <em>DVG-WM</em>: Disentangled Video Generation<br>
+      Enables Efficient Embodied World Model<br>
+      for Robotic Manipulation
+    </h1>
+
+    <p class="hero-authors">
+      <a href="https://zyshan0929.github.io">Ziyu Shan</a><sup>1</sup>,
+      Zhenyu Wu<sup>2</sup>,
+      Xiaofeng Wang<sup>3</sup>,
+      Zheng Zhu<sup>3</sup>,
+      Ziwei Wang<sup>1,&dagger;</sup>
+    </p>
+    <p class="hero-affil">
+      <sup>1</sup> Nanyang Technological University, Singapore &nbsp;&middot;&nbsp;
+      <sup>2</sup> Beijing University of Posts and Telecommunications, Beijing, China &nbsp;&middot;&nbsp;
+      <sup>3</sup> GigaAI<br>
+      <sup>&dagger;</sup> Corresponding author
+    </p>
+
+    <div class="btn-row">
+      <span class="btn btn-disabled" aria-disabled="true" title="Paper coming soon">
+        <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>
+        Paper <span class="btn-sub">(coming soon)</span>
+      </span>
+      <a class="btn btn-primary" href="https://github.com/zyshan0929/DVG-WM" aria-label="Code on GitHub">
+        <svg width="16" height="16" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z"/></svg>
+        Code
+      </a>
+      <a class="btn btn-outline" href="#results">
+        <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>
+        Results
+      </a>
+    </div>
+
+    <!-- Metric cards -->
+    <div class="hero-cards">
+      <div class="metric-card">
+        <div class="metric-label">Inference Speedup</div>
+        <div class="metric-value">3.97<span class="unit">&times;</span></div>
+        <div class="metric-desc">Faster than baselines, enabling iterative real-world planning</div>
+      </div>
+      <div class="metric-card">
+        <div class="metric-label">Object-Level Accuracy</div>
+        <div class="metric-value">89<span class="unit">%</span></div>
+        <div class="metric-desc">Reliably grounds interactions on the correct target object (LIBERO)</div>
+      </div>
+      <div class="metric-card accent">
+        <div class="metric-label">World Modeling via</div>
+        <div class="metric-value metric-value-text">Disentangled Video Generation</div>
+        <div class="metric-desc">Dynamics preview &middot; Flow-matching refinement &middot; Latent degradation</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══ Abstract ══ -->
+<section id="abstract">
+  <div class="container">
+    <p class="section-label">Abstract</p>
+    <h2 class="section-title">Disentangling dynamics learning<br>from visual synthesis</h2>
+
+    <div class="figure-wrap teaser reveal">
+      <img src="assets/images/teaser.png"
+           alt="DVG-WM teaser: given an initial observation and a language instruction, the model previews a fast low-resolution trajectory, then reconstructs a high-fidelity video for real-world execution"
+           loading="lazy" />
+      <p class="figure-caption">
+        <strong>DVG-WM at a glance.</strong>
+        Given an initial observation and a language instruction, DVG-WM first generates a low-resolution imagined trajectory to <em>preview</em> the physical interaction (50 NFEs), then <em>reconstructs</em> a high-fidelity video with only 4 NFEs. The disentangled design yields both faster inference and stronger real-world manipulation performance.
+      </p>
+    </div>
+
+    <div class="abstract-grid">
+      <p class="section-body">
+        Video-based embodied world models provide an appealing substrate for robotic manipulation by predicting future states, yet current approaches remain limited by a fundamental entanglement: accurately modeling dynamics typically requires low-level temporal reasoning, while producing high-resolution frames demands expansive visual synthesis according to high-level semantics. This entanglement results in slow inference speed for iterative planning or too coarse predictions to retain contact-rich details. To solve this dilemma, we present the <strong>Disentangled Video Generation World Model (DVG-WM)</strong>, an efficient framework that explicitly <strong>decomposes world modeling into dynamics learning and visual synthesis</strong>. Conditioned on an initial observation and a language instruction, our model first generates a plausible sequence of intermediate visual states to preview the physical interaction and refines them to obtain high-fidelity videos. Furthermore, an efficient cascading mechanism is proposed, where DVG-WM leverages flow matching to directly map the dynamics to video latents, and introduces a latent degradation mechanism to enable the capability of regenerating contact-rich details. Experiments on LIBERO and real-world platforms demonstrate improved video quality with up to <strong>3.97&times; acceleration</strong>, validating that disentangled video generation can be an efficient embodied world model for robotic manipulation.
+      </p>
+
+      <div class="keypoints reveal">
+        <div class="keypoint">
+          <div class="keypoint-title">Two-stage disentanglement</div>
+          <div class="keypoint-body">A low-resolution preview stage learns dynamics; a high-resolution refinement stage synthesizes appearance—each optimized at its ideal resolution.</div>
+        </div>
+        <div class="keypoint">
+          <div class="keypoint-title">Flow-matching cascading</div>
+          <div class="keypoint-body">Flow matching directly maps low-resolution dynamics to high-resolution video latents, restoring detail in just 4 function evaluations.</div>
+        </div>
+        <div class="keypoint">
+          <div class="keypoint-title">Latent degradation</div>
+          <div class="keypoint-body">Perturbing latents instead of pixels lets the model regenerate contact-rich structures rather than take shortcut upscaling.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══ Method ══ -->
+<section id="method">
+  <div class="container">
+    <p class="section-label">Method</p>
+    <h2 class="section-title">A two-stage disentangled pipeline</h2>
+    <p class="section-body">
+      DVG-WM decomposes video-based world modeling into a fast dynamics <em>preview</em> and a high-fidelity <em>refinement</em>, connected by an efficient cascading mechanism. An optional action expert turns the imagined future into executable actions.
+    </p>
+
+    <div class="figure-wrap reveal">
+      <img src="assets/images/pipeline.png"
+           alt="DVG-WM pipeline: preview stage with LoRA-adapted diffusion transformer producing low-resolution latents, upscale and latent degradation, refinement stage producing high-resolution frames, then action expert"
+           loading="lazy" />
+      <p class="figure-caption">
+        <strong>Pipeline overview.</strong>
+        (1) A <strong>preview stage</strong> learns dynamics and generates low-resolution trajectories conditioned on the language instruction and initial frame. (2) A <strong>refinement stage</strong> upsamples the latent dynamics to produce high-fidelity video predictions with minimal additional computation. Finally, an action expert extracts the action sequence from the predicted video for manipulation.
+      </p>
+    </div>
+
+    <div class="method-blocks">
+      <div class="method-block reveal">
+        <div class="method-num">Stage 01</div>
+        <div class="method-block-title">Low-Resolution Dynamics Preview</div>
+        <div class="method-block-body">
+          A CogVideoX-5B backbone, adapted with <em>LoRA</em> and flexible 3D rotary position embeddings, generates low-resolution video latents that capture the essential interaction dynamics. Operating at low resolution makes each denoising step cheap, providing a fast and physically meaningful preview for iterative planning.
+        </div>
+      </div>
+      <div class="method-block reveal">
+        <div class="method-num">Stage 02</div>
+        <div class="method-block-title">Flow-Matching Refinement</div>
+        <div class="method-block-body">
+          A compact CogVideoX-2B refiner uses <em>flow matching</em> to map the upscaled low-resolution dynamics directly to high-resolution video latents along a straight-line probability path—restoring high-frequency detail and contact-sensitive cues in only 4 function evaluations instead of generating from noise.
+        </div>
+      </div>
+      <div class="method-block reveal">
+        <div class="method-num">Stage 03</div>
+        <div class="method-block-title">Action Expert for Imitation</div>
+        <div class="method-block-body">
+          A vision-only Diffusion Policy is attached to convert imagined futures into executable actions. The imitation-learning gradients propagate through both the action expert and the world model, aligning visual prediction with downstream action planning—no robot state required.
+        </div>
+      </div>
+    </div>
+
+    <div class="figure-split reveal">
+      <img src="assets/images/degradation.png"
+           alt="Comparison of pixel-level degradation versus latent degradation for training the refinement stage" loading="lazy" />
+      <p class="figure-caption">
+        <strong>Latent degradation for contact-rich manipulation.</strong>
+        Instead of degrading high-resolution video at the <em>pixel</em> level (which leaves the source and target tightly correlated and causes shortcut upscaling), DVG-WM perturbs the upscaled preview latents. This lets the refiner regenerate fine-grained contact details—preserving the structure of the gripper and target object in the zoomed-in view—rather than merely sharpening blurry pixels.
+      </p>
+    </div>
+  </div>
+</section>
+
+<!-- ══ Results ══ -->
+<section id="results">
+  <div class="container">
+    <p class="section-label">Results</p>
+    <h2 class="section-title">Efficient, high-fidelity<br>video prediction</h2>
+    <p class="section-body">
+      DVG-WM is evaluated on the LIBERO simulation benchmark for video quality and on a real-world Galaxea A1 platform for action planning.
+    </p>
+
+    <!-- KPI row -->
+    <div class="kpi-row reveal">
+      <div class="kpi-card">
+        <div class="kpi-number">3.97&times;</div>
+        <div class="kpi-sublabel">Faster inference<br>vs. LVP-14B</div>
+      </div>
+      <div class="kpi-card">
+        <div class="kpi-number">89%</div>
+        <div class="kpi-sublabel">Object-level accuracy<br>on LIBERO</div>
+      </div>
+      <div class="kpi-card">
+        <div class="kpi-number">88.7s</div>
+        <div class="kpi-sublabel">Total inference time<br>vs. 354.2s for LVP-14B</div>
+      </div>
+      <div class="kpi-card">
+        <div class="kpi-number">+25pp</div>
+        <div class="kpi-sublabel">Real-world success rate<br>over the vision-only policy</div>
+      </div>
+    </div>
+
+    <!-- Main comparison table -->
+    <h3 class="subsection-title">Video Quality on LIBERO</h3>
+    <p class="table-note">
+      Quantitative comparison of video quality and object-level accuracy. Best values in each column are highlighted. LongScape reports original metrics; object-level accuracy is unavailable.
+    </p>
+    <div class="table-wrap reveal">
+      <table>
+        <thead>
+          <tr>
+            <th>Method</th>
+            <th>PSNR &uarr;</th>
+            <th>SSIM &uarr;</th>
+            <th>LPIPS &darr;</th>
+            <th>FVD &darr;</th>
+            <th>Object &uarr;</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr><td>CogVideoX-5B</td><td>19.286</td><td>0.761</td><td>0.138</td><td>171.24</td><td>76%</td></tr>
+          <tr><td>Wan2.1-14B</td><td>18.964</td><td>0.732</td><td>0.162</td><td>198.54</td><td>68%</td></tr>
+          <tr><td>LongScape</td><td>19.977</td><td class="best">0.788</td><td>0.123</td><td>153.72</td><td>&ndash;</td></tr>
+          <tr><td>LVP-14B</td><td>19.582</td><td>0.765</td><td>0.134</td><td>187.69</td><td>80%</td></tr>
+          <tr class="highlight-row">
+            <td>DVG-WM (Ours)</td>
+            <td class="best">20.019</td>
+            <td>0.783</td>
+            <td class="best">0.120</td>
+            <td class="best">152.36</td>
+            <td class="best">89%</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <!-- Efficiency -->
+    <h3 class="subsection-title">Inference Efficiency</h3>
+    <p class="table-note">
+      Inference time for generating a full video prediction. DVG-WM runs its 50 denoising steps at low resolution and refines with only 4 steps, yielding up to a 3.97&times; speedup.
+    </p>
+    <div class="figure-split reveal">
+      <img src="assets/images/time.png" alt="Inference time comparison: CogVideoX-5B 236.8s, Wan2.1-14B 312.0s, LVP-14B 354.2s, DVG-WM 88.7s" loading="lazy" />
+      <p class="figure-caption">
+        <strong>Up to 3.97&times; faster.</strong>
+        DVG-WM completes a full prediction in <strong>88.7s</strong>, versus 236.8s (CogVideoX-5B), 312.0s (Wan2.1-14B) and 354.2s (LVP-14B). The 50 denoising steps run at low resolution and refinement needs only 4 steps&mdash;crucial for real-world iterative planning.
+      </p>
+    </div>
+
+    <!-- Qualitative -->
+    <h3 class="subsection-title">Qualitative Comparison</h3>
+    <div class="figure-wrap reveal">
+      <img src="assets/images/qualitative.png"
+           alt="Qualitative comparison of video predictions from DVG-WM and CogVideoX on LIBERO open-drawer task; red circles highlight wrong interaction details of CogVideoX"
+           loading="lazy" />
+      <p class="figure-caption">
+        <strong>LIBERO open-drawer task.</strong>
+        CogVideoX shows the intent to interact with the wrong object (the bowl) at <em>t</em>=10 and misses the final drawer-pulling stage at <em>t</em>=40 (red circles). DVG-WM faithfully captures the contact-rich details—the gripper contacting the drawer and the subsequent drawer motion—while following the instruction accurately.
+      </p>
+    </div>
+
+    <!-- Ablation -->
+    <h3 class="subsection-title">Ablation: Dissecting the Disentangled Design</h3>
+    <p class="table-note">
+      Component analysis on LIBERO. Both stages and the proposed cascading choices are necessary for the best video quality.
+    </p>
+    <div class="table-wrap reveal">
+      <table>
+        <thead>
+          <tr>
+            <th>#Stages</th>
+            <th>Method</th>
+            <th>PSNR &uarr;</th>
+            <th>SSIM &uarr;</th>
+            <th>LPIPS &darr;</th>
+            <th>FVD &darr;</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr class="table-section-header"><td colspan="6">Two-Stage</td></tr>
+          <tr class="highlight-row">
+            <td>Two</td><td>DVG-WM (Ours)</td>
+            <td class="best">20.019</td><td class="best">0.783</td><td class="best">0.120</td><td class="best">152.36</td>
+          </tr>
+          <tr><td>Two</td><td>Pixel Degradation</td><td>19.421</td><td>0.768</td><td>0.128</td><td>168.54</td></tr>
+          <tr><td>Two</td><td>Naive Cascading</td><td>19.580</td><td>0.765</td><td>0.134</td><td>187.69</td></tr>
+          <tr><td>Two</td><td>360p Preview + Refine</td><td>18.812</td><td>0.756</td><td>0.146</td><td>188.47</td></tr>
+          <tr class="table-section-header"><td colspan="6">One-Stage</td></tr>
+          <tr><td>One</td><td>Only Preview</td><td>14.714</td><td>0.721</td><td>0.341</td><td>238.72</td></tr>
+          <tr><td>One</td><td>Only Refine</td><td>19.277</td><td>0.760</td><td>0.135</td><td>169.29</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="figure-wrap reveal">
+      <img src="assets/images/lora.png"
+           alt="Preview-stage videos at different LoRA fine-tuning steps; blue circles highlight bowl texture, red circles highlight gripper-drawer contact"
+           loading="lazy" />
+      <p class="figure-caption">
+        <strong>Inside the preview stage.</strong>
+        As LoRA fine-tuning proceeds, the preview stage trades fine texture (blue circles) for accurate interaction dynamics (red circles): by step 5K it correctly models the gripper&ndash;drawer contact. This confirms the preview stage specializes in dynamics, supplying a meaningful initialization that the refinement stage turns into high-fidelity video.
+      </p>
+    </div>
+
+    <!-- Real-world -->
+    <h3 class="subsection-title">Real-World Manipulation</h3>
+    <div class="figure-split reveal">
+      <img src="assets/images/setup.png" alt="Real-world setup: Galaxea A1 robotic arm with parallel gripper and RealSense L515 RGBD camera" loading="lazy" />
+      <p class="figure-caption">
+        <strong>Platform setup.</strong>
+        Experiments run on a Galaxea A1 robotic arm with a parallel gripper, observed by a RealSense L515 RGBD camera. We evaluate two tasks—moving a banana and placing bread into a gray bowl—using DVG-WM as a language-guided video planner equipped with an action expert.
+      </p>
+    </div>
+
+    <p class="table-note" style="margin-top:1.5rem;">
+      Video quality on real-world scenarios. Mask-IoU measures overlap of the embodiment region between generated and ground-truth frames.
+    </p>
+    <div class="table-wrap reveal">
+      <table>
+        <thead>
+          <tr><th>Method</th><th>PSNR &uarr;</th><th>SSIM &uarr;</th><th>LPIPS &darr;</th><th>FVD &darr;</th><th>Mask-IoU &uarr;</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>CogVideoX-5B</td><td>18.642</td><td>0.745</td><td>0.151</td><td>189.32</td><td>0.54</td></tr>
+          <tr class="highlight-row"><td>DVG-WM (Ours)</td><td class="best">19.287</td><td class="best">0.771</td><td class="best">0.128</td><td class="best">164.78</td><td class="best">0.57</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <p class="table-note">
+      Task success rate over 10 rollouts: SR1 = moving banana, SR2 = placing bread into the gray bowl. DVG-WM with an action expert improves the average success rate by 25 points over the vision-only policy.
+    </p>
+    <div class="table-wrap reveal">
+      <table>
+        <thead>
+          <tr><th>Method</th><th>SR1 %</th><th>SR2 %</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>DP (vision-only)</td><td>30 &plusmn; 15</td><td>20 &plusmn; 10</td></tr>
+          <tr><td>CogVideoX</td><td>50 &plusmn; 10</td><td>45 &plusmn; 5</td></tr>
+          <tr class="highlight-row"><td>DVG-WM (Ours)</td><td class="best">75 &plusmn; 10</td><td class="best">70 &plusmn; 0</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="figure-wrap reveal">
+      <img src="assets/images/real-qualitative.png"
+           alt="Qualitative results on the real-world task of placing bread into bowl, comparing ground truth, CogVideoX and DVG-WM"
+           loading="lazy" />
+      <p class="figure-caption">
+        <strong>Real-world placing-bread task.</strong>
+        DVG-WM predicts realistic future interactions with fine-grained contact details between the gripper and objects, even preserving the contact area and texture of the bread. CogVideoX exhibits ghosting and motion blur (zoomed-in view), whereas DVG-WM completes the pick-and-place sequence faithfully.
+      </p>
+    </div>
+  </div>
+</section>
+
+<!-- ══ Citation ══ -->
+<section id="citation">
+  <div class="container">
+    <p class="section-label">Citation</p>
+    <h2 class="section-title">BibTeX</h2>
+    <p class="section-body">
+      If you find DVG-WM useful in your research, please consider citing our work.
+    </p>
+    <div class="citation-block reveal">
+      <button class="copy-btn" id="copy-btn" type="button">Copy</button>
+      <code id="bibtex">@article{shan2026dvgwm,
+  title={DVG-WM: Disentangled Video Generation Enables Efficient Embodied World Model for Robotic Manipulation},
+  author={Shan, Ziyu and Wu, Zhenyu and Wang, Xiaofeng and Zhu, Zheng and Wang, Ziwei},
+  year={2026}
+}
+</code>
+    </div>
+  </div>
+</section>
+
+<!-- ══ Footer ══ -->
+<footer class="site-footer">
+  <div class="container">
+    <p>
+      DVG-WM &middot; 2026 &middot;
+      <a href="https://github.com/zyshan0929/DVG-WM">Code</a> &middot;
+      <a href="https://zyshan0929.github.io">Ziyu Shan</a>
+    </p>
+    <p class="footer-sub">
+      Disentangled video generation for efficient embodied world models.
+    </p>
+  </div>
+</footer>
+
+<script src="assets/script.js"></script>
+</body>
+</html>
