@@ -790,5 +790,5 @@ html.js .reveal.visible {
   .figure-split { grid-template-columns: 1fr; }
 }
 
-/* Teaser figure on warm background */
-.figure-wrap.teaser img { background: #0c0c0c; }
+/* Teaser figure on white background */
+.figure-wrap.teaser img { background: #ffffff; }
