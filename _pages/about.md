@@ -22,6 +22,7 @@ I am a first year PhD student of [Perception and embodied INtElligence (PINE) La
 I am currently advised by [Prof. Ziwei Wang](https://ziweiwangthu.github.io/), and working closely with [Prof. Yiling Xu](https://scholar.google.com/citations?user=638kRwkAAAAJ&hl=en) and [Rui Ye](https://rui-ye.github.io/). My research interests lie in embodied ai, world model, media perceptual quality assessment (e.g., 3D point cloud, image) and low-level vision. Specifically, I focus on world action models (WAM), vision-and-language models (VLA) and mobile manipulation.
 
 ## 🔥 News
+- *2026.07*: Our paper (DVG-WM) is accepted by **ECCV2026**!
 - *2026.04*: Our paper (DockAnywhere) is accepted by **RA-L**!
 - *2026.02*: Our survey on VLA+RL is released!
 - *2025.04*: Joined PINE @ NTU!
@@ -34,6 +35,17 @@ I am currently advised by [Prof. Ziwei Wang](https://ziweiwangthu.github.io/), a
 ## 📝 Selected Publications 
 
 <sup>\*</sup> denotes equal contribution, <sup>†</sup> denotes corresponding author.
+
+<div class='paper-box'><div class='paper-box-image'><div><div class="badge">ECCV</div><img src='images/dvgwm.png' alt="sym" width="100%"></div></div>
+<div class='paper-box-text' markdown="1">
+
+DVG-WM: Disentangled Video Generation Enables Efficient Embodied World Model for Robotic Manipulation
+
+**Ziyu Shan**, Zhenyu Wu, Xiaofeng Wang, Zheng Zhu, Ziwei Wang<sup>†</sup>,
+
+- [**\[pdf\]**](https://arxiv.org/abs/2606.32028)[**\[code\]**](https://github.com/zyshan0929/DVG-WM)[**\[website\]**](https://zyshan0929.github.io/DVGWM/)
+</div>
+</div>
 
 <div class='paper-box'><div class='paper-box-image'><div><div class="badge">RA-L</div><img src='images/dockanywhere.png' alt="sym" width="100%"></div></div>
 <div class='paper-box-text' markdown="1">
