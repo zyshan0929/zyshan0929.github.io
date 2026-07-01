@@ -135,5 +135,5 @@ GPA-Net:No-Reference Point Cloud Quality Assessment with Multi-task Graph Convol
 ## 💻 Services
 - Reviewers for:
   - TPAMI, TIP, TAI, TCSVT, TOMM, Neurocomputing.
-  - NeurIPS, AAAI, MM, ICME.
+  - NeurIPS, CoRL, AAAI, MM, ICME.
 
