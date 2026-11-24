@@ -501,6 +501,7 @@ main { position: relative; z-index: 1; }
 }
 .hero-authors a:hover { color: var(--accent); border-color: var(--accent); }
 .hero-authors sup, .hero-affil sup { font-size: 0.68em; margin-left: 1px; }
+.hero-authors .mail, .hero-affil .mail { font-size: 1.35em; line-height: 0; vertical-align: -0.06em; }
 
 .hero-affil {
   font-size: 0.92rem;
