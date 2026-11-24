@@ -459,20 +459,17 @@ main { position: relative; z-index: 1; }
   pointer-events: none;
 }
 
-.hero-mark { width: 74px; height: 78px; margin: 0 auto 1rem; }
-
-.hero-venue {
-  display: inline-block;
-  font-size: 0.78rem;
-  font-weight: 700;
-  letter-spacing: 0.18em;
-  text-transform: uppercase;
-  color: var(--accent);
-  background: var(--accent-soft);
-  border-radius: 999px;
-  padding: 6px 16px;
-  margin-bottom: 1.3rem;
+/* emblem to the left of the title; the pair is centered in the hero card */
+.hero-head {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: clamp(14px, 2.2vw, 28px);
+  max-width: 1000px;
+  margin: 0 auto 1.6rem;
 }
+.hero-mark { flex: none; width: clamp(60px, 8vw, 120px); height: auto; margin: 0; }
+.hero-head .hero-title { margin: 0; text-align: left; }
 
 .hero-title {
   text-wrap: balance;
@@ -1526,6 +1523,8 @@ html.js .reveal.visible { opacity: 1; transform: none; }
 
 @media (max-width: 480px) {
   .header-nav { flex-wrap: wrap; justify-content: flex-start; overflow: visible; }
+  .hero-head { gap: 12px; }
+  .hero-head .hero-title { font-size: 1.5rem; }
   .header-nav a { padding: 5px 8px; font-size: 0.86rem; }
   .vgrid, .vgrid.four, .vgrid.two { grid-template-columns: 1fr; }
   .kpi-row { grid-template-columns: 1fr 1fr; gap: 8px; }

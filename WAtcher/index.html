@@ -51,11 +51,12 @@
 
 <!-- ══ Hero ══ -->
 <section class="card hero" id="top" aria-label="WAtcher">
-  <img class="hero-mark" src="assets/images/watcher-mark.svg" alt="" width="74" height="78" />
-  <div class="hero-venue">Under review &middot; 2026</div>
-  <h1 class="hero-title">
-    <em><span class="wa">WA</span>tcher</em>: Watching Ahead for Safe Robotic Manipulation with Efficient World-Action Models
-  </h1>
+  <div class="hero-head">
+    <img class="hero-mark" src="assets/images/watcher-mark.svg" alt="" width="74" height="78" />
+    <h1 class="hero-title">
+      <em><span class="wa">WA</span>tcher</em>: Watching Ahead for Safe Robotic Manipulation with Efficient World-Action Models
+    </h1>
+  </div>
   <p class="hero-authors">
     <span class="au"><a href="https://zyshan0929.github.io">Ziyu Shan</a><sup>1</sup>,</span>
     <span class="au">MA XIAO<sup>1</sup>,</span>
@@ -743,18 +744,6 @@
     <p class="section-body">
       <b>Safety on the real robot.</b> We stage three hazard scenarios with 20 paired layouts each and adapt Safe-Guard on 258 human-verified pipeline windows. Counted from video by two observers blind to the condition, hazards fall from <b>43 to 6 of 60 runs</b>, against 19 for a depth-based collision check, 13 without imagined frames, and 11 for an adapted ContactGuard-style monitor. Safe-Guard raises 3 false alarms in 60 obstacle-free controls.
     </p>
-  </div>
-  <div class="subsection" id="limitations">
-    <div class="subsection-head">
-      <h3 class="subsection-title">Limitations</h3>
-    </div>
-    <ul class="findings">
-      <li><b>No guarantee.</b> Safe-Guard gives no safety guarantee, and most of its rejections are false alarms. A hazard that the shared video expert cannot imagine may be both proposed and accepted.</li>
-      <li><b>Coverage.</b> Closed-loop hazard counts cover eight of the 50 RoboTwin tasks, the blind set spans eight RoboTwin tasks, and transfer to unseen tasks is partial. Hazard labels are rule-defined.</li>
-      <li><b>Benchmark use.</b> The 300-question benchmark was scored repeatedly while Safe-Guard was designed; the blind set is the one-shot test.</li>
-      <li><b>Real robot.</b> The UR7e head needs 258 human-verified windows, and the 60 staged layouts do not separate Safe-Guard from an adapted ContactGuard-style monitor. On real data, the imagined frames blur beyond about 0.3&nbsp;s.</li>
-    </ul>
-    <p class="note small">Summarized from the paper's limitations section.</p>
   </div>
 </section>
 
