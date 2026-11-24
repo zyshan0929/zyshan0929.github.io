@@ -707,31 +707,7 @@
 
   </div>
 
-  <!-- 3.6 ablation -->
-  <div class="subsection" id="ablation">
-    <div class="subsection-head">
-      <h3 class="subsection-title">Ablation: the decision uses every input</h3>
-      <div class="head-figure"><div class="big">&minus;36.8</div><div class="cap">BAcc points when the candidate is swapped</div></div>
-    </div>
-    <p class="section-body">
-      On the 300-question benchmark, swapping in the candidate of another window at test time lowers BAcc by 36.8 points, and swapping the state or the imagined future lowers it by 15.6 and 10.9, so the decision depends on all three inputs. Among the components, the spatial grid of the view tokens matters most, followed by the state token, the displacement branch, the step loss and the [CLS] token.
-    </p>
-    <div class="table-wrap reveal" style="max-width:640px">
-      <table>
-        <thead><tr><th>Swapped</th><th>&Delta;BAcc</th><th>Removed</th><th>&Delta;BAcc</th></tr></thead>
-        <tbody>
-          <tr><td>Candidate</td><td>&minus;36.8</td><td>Spatial grid</td><td>&minus;8.2</td></tr>
-          <tr><td>State</td><td>&minus;15.6</td><td>State token</td><td>&minus;4.9</td></tr>
-          <tr><td>Imagined future</td><td>&minus;10.9</td><td>Displacement</td><td>&minus;3.9</td></tr>
-          <tr><td></td><td></td><td>Step loss</td><td>&minus;2.5</td></tr>
-          <tr><td></td><td></td><td>[CLS] token</td><td>&minus;1.6</td></tr>
-        </tbody>
-      </table>
-    </div>
-    <p class="table-caption">Ablation on the 300-question benchmark. &Delta;BAcc: change in BAcc (points) relative to the full model. Left: an input swapped at test time; right: a component removed and retrained. (Table 5 of the paper.)</p>
-  </div>
-
-  <!-- 3.7 real world -->
+  <!-- real world -->
   <div class="subsection" id="real-world">
     <div class="subsection-head">
       <h3 class="subsection-title">Real robot: best average success, 43 &rarr; 6 staged hazards</h3>
@@ -767,15 +743,6 @@
     <p class="section-body">
       <b>Safety on the real robot.</b> We stage three hazard scenarios with 20 paired layouts each and adapt Safe-Guard on 258 human-verified pipeline windows. Counted from video by two observers blind to the condition, hazards fall from <b>43 to 6 of 60 runs</b>, against 19 for a depth-based collision check, 13 without imagined frames, and 11 for an adapted ContactGuard-style monitor. Safe-Guard raises 3 false alarms in 60 obstacle-free controls.
     </p>
-
-    <figure class="figure-wrap reveal">
-      <img class="fig-img zoomable" src="assets/images/fig-robot-bottle.webp" width="2200" height="648" loading="lazy"
-           alt="Bottle scenario on the UR7e: the initial configuration, a bottle toppled under direct execution, and the Safe-Guard-triggered automatic retreat with the bottle upright." />
-      <figcaption class="figure-caption">
-        <strong>Bottle scenario on the UR7e.</strong> (a) The initial configuration, (b) a bottle-toppling contact under direct execution, and (c) the Safe-Guard-triggered automatic retreat with the bottle upright.
-      </figcaption>
-    </figure>
-
   </div>
   <div class="subsection" id="limitations">
     <div class="subsection-head">
