@@ -144,6 +144,7 @@ main h2::after { content: ""; flex: 1; height: 1px; background: linear-gradient(
 .pub h3 { font-size: 1.05rem; margin: 0 0 0.4rem; }
 .pub .authors { color: var(--muted); font-size: 0.9rem; margin: 0 0 0.3rem; }
 .pub .authors b { color: var(--ink); }
+.pub .authors .mail, .note .mail { font-size: 1.35em; line-height: 0; vertical-align: -0.06em; }
 .pub .venue { color: var(--accent); font-size: 0.85rem; font-weight: 700; margin: 0 0 0.7rem; }
 .pub .oral { color: var(--oral); }
 .btns { display: flex; flex-wrap: wrap; gap: 0.45rem; }
