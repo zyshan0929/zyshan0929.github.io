@@ -15,7 +15,7 @@
   --shadow: 0 6px 22px rgba(30, 44, 60, 0.06);
   --shadow-hover: 0 12px 30px rgba(30, 44, 60, 0.11);
   --oral: #A84F58;
-  --page-width: 1360px;    /* overall page width — change this to widen/narrow */
+  --page-width: 1140px;    /* overall page width — change this to widen/narrow */
 
   --serif: "Iowan Old Style", "Palatino Linotype", "Book Antiqua", Palatino, Georgia, serif;
   --sans: "Avenir Next", "Helvetica Neue", "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
